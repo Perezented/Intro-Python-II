@@ -8,3 +8,4 @@ class Room:
     # string for it as well
     def __str__(self):
         return f"Room: {self.name}, Description: {self.desc}"
+    # ability to move directions

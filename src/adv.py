@@ -1,6 +1,7 @@
+# importing from different files
 from room import Room
 from player import Player
-# from item import Item
+from item import Item
 
 # Declare all the rooms
 
@@ -23,7 +24,19 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-outside = Room("Outside Cave Entrance", "North of you, the cave mount beckons")
+
+# Room(room)
+# setting all the room names to an array
+rooms = []
+# and all their descriptions with text in another array
+roomDesc = []
+# for each room item, I want to move each location name to rooms array
+# and each class made to roomDesc array
+for k, v in room.items():
+    # print(f'key: {k}, value: {v}')
+    rooms.append(k)
+    roomDesc.append(v)
+print(rooms)
 
 # Link rooms together
 
@@ -43,23 +56,25 @@ room['treasure'].s_to = room['narrow']
 print('Welcome to the text game!')
 playerName = input('Please input your player\'s name:\
     ')
-player = Player(playerName, outside)
+player = Player(playerName, rooms[0])
 print(f'And so, {playerName} comemnced their quest')
+
+# Write a loop that:
 while True:
+# * Prints the current room name
     print(player)
+# * Prints the current description (the textwrap module might be useful here).
+
+# * Waits for user input and decides what to do.
     moving = input("Where should the character go?")
+# If the user enters "q", quit the game.
     if moving == 'q':
         print("Thanks for playing!")
         break
-    player.current_room = moving
+    player.current_room.moving
 
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
+
 # If the user enters a cardinal direction, attempt to move to the room there.
+
 # Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+
