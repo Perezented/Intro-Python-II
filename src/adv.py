@@ -1,4 +1,6 @@
 from room import Room
+from player import Player
+# from item import Item
 
 # Declare all the rooms
 
@@ -22,7 +24,7 @@ earlier adventurers. The only exit is to the south."""),
 }
 
 outside = Room("Outside Cave Entrance", "North of you, the cave mount beckons")
-print(outside)
+
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -34,11 +36,22 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-#
-# Main
-#
 
 # Make a new player object that is currently in the 'outside' room.
+
+# have an input to start off the player and maketheir player.
+print('Welcome to the text game!')
+playerName = input('Please input your player\'s name:\
+    ')
+player = Player(playerName, outside)
+print(f'And so, {playerName} comemnced their quest')
+while True:
+    print(player)
+    moving = input("Where should the character go?")
+    if moving == 'q':
+        print("Thanks for playing!")
+        break
+    player.current_room = moving
 
 # Write a loop that:
 #
