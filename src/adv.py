@@ -5,9 +5,8 @@ from item import Item
 
 # Declare all the rooms
 
-room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+roomsList = {
+    'outside':  Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -27,16 +26,13 @@ earlier adventurers. The only exit is to the south."""),
 
 # Room(room)
 # setting all the room names to an array
-rooms = []
+room = {}
 # and all their descriptions with text in another array
 roomDesc = []
-# for each room item, I want to move each location name to rooms array
-# and each class made to roomDesc array
-for k, v in room.items():
-    # print(f'key: {k}, value: {v}')
-    rooms.append(k)
-    roomDesc.append(v)
-print(rooms)
+# made a dict to hold all the locations and their descriptions
+for k, v in roomsList.items():
+    #set the key and values from roomsList into the dict
+    room.__setitem__(k, v)
 
 # Link rooms together
 
@@ -54,9 +50,12 @@ room['treasure'].s_to = room['narrow']
 
 # have an input to start off the player and maketheir player.
 print('Welcome to the text game!')
+# get the players name to start the text adventure
 playerName = input('Please input your player\'s name:\
     ')
-player = Player(playerName, rooms[0])
+# creating a new player with the player class
+player=Player(playerName, room['outside'])
+# a message to let the player know they started.
 print(f'And so, {playerName} comemnced their quest')
 
 # Write a loop that:
@@ -66,12 +65,13 @@ while True:
 # * Prints the current description (the textwrap module might be useful here).
 
 # * Waits for user input and decides what to do.
-    moving = input("Where should the character go?")
+    action = input("Where should the character do?")
 # If the user enters "q", quit the game.
-    if moving == 'q':
+    if action == 'q':
+        #print them a message as well
         print("Thanks for playing!")
         break
-    player.current_room.moving
+    
 
 
 # If the user enters a cardinal direction, attempt to move to the room there.

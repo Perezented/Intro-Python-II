@@ -2,10 +2,10 @@
 # description attributes.
 class Room:
     # Class for room that has a name and description
-    def __init__(self, name, desc):
+    def __init__(self, name, description):
         self.name = name
-        self.desc = desc
+        self.description = description
     # string for it as well
     def __str__(self):
-        return f"Room: {self.name}, Description: {self.desc}"
+        return f"room: {self.name}, description: {self.description}"
     # ability to move directions

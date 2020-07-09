@@ -2,9 +2,9 @@
 # currently.
 class Player:
     # Class for player that has a name and current room
-    def __init__(self, name, current_room):
+    def __init__(self, name, currentRoom):
         self.name = name
-        self.current_room = current_room
+        self.currentRoom = currentRoom
     #string for it as well.
     def __str__(self):
-        return f"{self.name} is located at {self.current_room}"
+        return f"{self.name}'s current {self.currentRoom}"
