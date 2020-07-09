@@ -7,4 +7,4 @@ class Player:
         self.currentRoom = currentRoom
     #string for it as well.
     def __str__(self):
-        return f"{self.name}'s current {self.currentRoom}"
+        return f"~ {self.name}'s current {self.currentRoom}"
