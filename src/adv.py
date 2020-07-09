@@ -71,10 +71,15 @@ while True:
         #print them a message as well
         print("Thanks for playing!")
         break
-    
-
-
 # If the user enters a cardinal direction, attempt to move to the room there.
-
+    # if the players action is either n, w, s, or e, then attempt to have the player.currentLocation change according to direction
+    elif action == 'n':
+        player.currentRoom = player.currentRoom.n_to
+    elif action == 's':
+        player.currentRoom = player.currentRoom.s_to
+    elif action == 'w':
+        player.currentRoom = player.currentRoom.w_to
+    elif action == 'e':
+        player.currentRoom = player.currentRoom.e_to
 # Print an error message if the movement isn't allowed.
 
