@@ -46,30 +46,34 @@ room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
 
-# Make a new player object that is currently in the 'outside' room.
 
 # have an input to start off the player and maketheir player.
-print('Welcome to the text game!')
+print('Welcome to the text adventure game!')
 # get the players name to start the text adventure
 playerName = input('Please input your player\'s name:\
     ')
-
+# Make a new player object that is currently in the 'outside' room.
 # creating a new player with the player class
 player=Player(playerName, room['outside'])
+# setup possible directions
+possibleDirections = ['n', 'e', 'w', 's']
 # a message to let the player know they started.
-print()
-print(f'And so, {playerName} comemnced their quest')
 
-location = player.currentRoom
+print()
+print(f'And so, {playerName} commenced the adventure.')
 # Write a loop that:
 while True:
 # * Prints the current room name
     print()
     print(player)
+    print(player.currentRoom.description)
 # * Prints the current description (the textwrap module might be useful here).
 
 # * Waits for user input and decides what to do.
-    action = input("Where should the character do? ")
+# when input comes in, strip off whitespace, lowercase the input, and 
+    action = input("What should the player do? ").strip().lower().split()[0]
+    print(action) 
+    action = action[0]
 # If the user enters "q", quit the game.
     if action == 'q':
         #print them a message as well
@@ -78,26 +82,10 @@ while True:
         break
 # If the user enters a cardinal direction, attempt to move to the room there.
     # if the players action is either n, w, s, or e, then attempt to have the player.currentRoom change according to direction
-    elif action == 'n':
-        if hasattr(player.currentRoom, 'n_to'):
-            player.currentRoom = player.currentRoom.n_to
-        else:
-# Print an error message if the movement isn't allowed.
-            print('#### Err, that is not a possible direction. You are redirected back to the same room. ####')
-    elif action == 's':
-        if hasattr(player.currentRoom, 's_to'):
-            player.currentRoom = player.currentRoom.s_to
-        else:
-            print('#### Err, that is not a possible direction. You are redirected back to the same room. ####')
-    elif action == 'w':
-        if hasattr(player.currentRoom, 'w_to'):
-            player.currentRoom = player.currentRoom.w_to
-        else:
-            print('#### Err, that is not a possible direction. You are redirected back to the same room. ####')
-    elif action == 'e':
-        if hasattr(player.currentRoom, 'e_to'):
-            player.currentRoom = player.currentRoom.e_to
-        else:
-            print('#### Err, that is not a possible direction. You are redirected back to the same room. ####')
-            print()
+
+    if action in possibleDirections:
+        # check to see if we can go in a direction
+        # if so, head that direction
+        player.tryDirection(action)
+
 

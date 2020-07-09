@@ -7,5 +7,5 @@ class Room:
         self.description = description
     # string for it as well
     def __str__(self):
-        return f"room: {self.name}, description: {self.description}"
+        return f"{self.name}."
     # ability to move directions
