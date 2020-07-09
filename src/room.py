@@ -18,9 +18,9 @@ class Room:
                 # if there are items in the room, they should display
                 if self.items[0]:
                     # after printing, looks like this will need text wrapped.
+                    i += 1
                     wrapper = textwrap.TextWrapper(width=60)
                     itemsDesc = wrapper.fill(text=f"{i} - {items}") 
-                    i += 1
                     print()
                     print(itemsDesc)
                 # else if there are not any items, print out that there is nothing else in the room

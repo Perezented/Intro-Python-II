@@ -7,7 +7,9 @@ from item import Item
 # Declare all the rooms
 
 roomsList = {
-    'outside':  Room("Outside Cave Entrance", "North of you, the cave mount beckons", []),
+    'outside': Room("Outside Cave Entrance", "North of you, the cave mount beckons", [
+        Item("House key", "The key to your house.")
+    ]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", []),
@@ -54,7 +56,7 @@ print('Welcome to the text adventure game!')
 playerName = input('Please input your player\'s name:\n')
 # Make a new player object that is currently in the 'outside' room.
 # creating a new player with the player class
-player=Player(playerName, room['outside'])
+player=Player(playerName, room['outside'], [])
 # setup possible directions
 possibleDirections = ['n', 'e', 'w', 's']
 # a message to let the player know they started.
@@ -94,3 +96,6 @@ while True:
         # if so, head that direction
         player.tryDirection(action)
 
+    # if the player types i or inventory, they can see their inventory
+    elif action == 'i':
+        player.showInv()
