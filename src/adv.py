@@ -1,3 +1,4 @@
+import textwrap
 # importing from different files
 from room import Room
 from player import Player
@@ -50,8 +51,7 @@ room['treasure'].s_to = room['narrow']
 # have an input to start off the player and maketheir player.
 print('Welcome to the text adventure game!')
 # get the players name to start the text adventure
-playerName = input('Please input your player\'s name:\
-    ')
+playerName = input('Please input your player\'s name:\n')
 # Make a new player object that is currently in the 'outside' room.
 # creating a new player with the player class
 player=Player(playerName, room['outside'])
@@ -66,13 +66,13 @@ while True:
 # * Prints the current room name
     print()
     print(player)
-    print(player.currentRoom.description)
 # * Prints the current description (the textwrap module might be useful here).
-
+    wrapper = textwrap.TextWrapper(width=60)
+    roomDesc = wrapper.fill(text=player.currentRoom.description) 
+    print(roomDesc)
 # * Waits for user input and decides what to do.
 # when input comes in, strip off whitespace, lowercase the input, and 
-    action = input("What should the player do? ").strip().lower().split()[0]
-    print(action) 
+    action = input("What should the player do?\n").strip().lower().split()[0]
     action = action[0]
 # If the user enters "q", quit the game.
     if action == 'q':
@@ -80,12 +80,17 @@ while True:
         print()
         print("Thanks for playing!")
         break
+
+    # action to look at items in the room.
+    elif action == 'l':
+        player.currentRoom.printItems()
+
+
 # If the user enters a cardinal direction, attempt to move to the room there.
     # if the players action is either n, w, s, or e, then attempt to have the player.currentRoom change according to direction
 
-    if action in possibleDirections:
+    elif action in possibleDirections:
         # check to see if we can go in a direction
         # if so, head that direction
         player.tryDirection(action)
-
 
