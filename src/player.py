@@ -1,3 +1,4 @@
+import textwrap
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 class Player:
@@ -24,16 +25,20 @@ class Player:
     def showInv(self):
         # if theres items in the inventory, display them
         if self.inventory:
-            for i, items in enumerate(self. items):
+            for i, inventory in enumerate(self.inventory):
             # if there are items in the room, they should display
                 if self.inventory[0]:
                 # after printing, looks like this will need text wrapped.
                     i += 1
                     wrapper = textwrap.TextWrapper(width=60)
-                    itemsDesc = wrapper.fill(text=f"{i} - {items}") 
+                    itemsDesc = wrapper.fill(text=f"{i} - {inventory}") 
                     print()
                     print(itemsDesc)
             
         # otherwise, let the player know there is nothing in the inventory
         else:
             print(f"# There is no items in {self.name}'s inventory. #")
+    
+    # add a item to a players inv
+    def addItemToInv(self, item):
+        self.inventory.append(item)

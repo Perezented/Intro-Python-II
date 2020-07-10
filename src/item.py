@@ -6,3 +6,5 @@ class Item:
 # string for it as well
     def __str__(self):
         return f"Item Name: {self.name}, Item Description: {self.description}"
+    def printName(self):
+        print(f'{self.name}')

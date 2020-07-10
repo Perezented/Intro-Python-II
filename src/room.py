@@ -26,3 +26,8 @@ class Room:
                 # else if there are not any items, print out that there is nothing else in the room
         else:
             print("# There is no items in the room. #")
+    def removeItem(self, chosenItem, currentRoomItems):
+        for index, i in enumerate(currentRoomItems):
+            if i.name == chosenItem.name:
+                print(i)
+                currentRoomItems.pop(index)

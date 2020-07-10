@@ -8,7 +8,8 @@ from item import Item
 
 roomsList = {
     'outside': Room("Outside Cave Entrance", "North of you, the cave mount beckons", [
-        Item("House key", "The key to your house.")
+        Item("House Key", "The key to your house."),
+        Item("Fake Item", "Fake Desc. Real Text")
     ]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
@@ -74,8 +75,17 @@ while True:
     print(roomDesc)
 # * Waits for user input and decides what to do.
 # when input comes in, strip off whitespace, lowercase the input, and 
-    action = input("What should the player do?\n").strip().lower().split()[0]
-    action = action[0]
+    action = input("What should the player do?\n").strip().lower().split()
+    print(action)
+    print(f'action[1] length: {len(action)}')
+    if len(action) > 1:
+        if action[0][0] == 'g':
+            chosenItem = player.currentRoom.items[int(action[1]) - 1]
+            player.addItemToInv(chosenItem)
+            player.currentRoom.removeItem(chosenItem, player.currentRoom.items)
+    elif action:
+        action = action[0][0]
+    print(action)
 # If the user enters "q", quit the game.
     if action == 'q':
         #print them a message as well
